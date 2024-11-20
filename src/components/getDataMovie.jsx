@@ -7,14 +7,14 @@ import { Link } from "react-router-dom";
 const GetDataMovie = () => {
   const [Movies, setMovieData] = useState([]);
   useEffect(() => {
-    return async () => {
-      const response = await axios.get(
-        "https://api.tvmaze.com/search/shows?q=dark"
-      );
+    fetch("https://api.tvmaze.com/search/shows?q=dark").then((res) => {
+      return data(res);
+    });
+    async function data(res) {
+      const response = await axios.get(res.url);
       setMovieData(response.data);
-    };
+    }
   }, []);
-
   async function search() {
     let url = "https://api.tvmaze.com/search/shows?q=";
     let input = document.getElementById("search");
@@ -50,23 +50,22 @@ const GetDataMovie = () => {
       </div>
       <div id="MoviesShow">
         {data.map((i, index) => (
-            <MoviesShow
-              key={index}
-              name={i.name}
-              image={i.imageOriginal ? i.imageOriginal : i.image}
-              genres={i.genres}
-              visitSite={i.visitSite}
-              officialSite={i.officialSite}
-              language={i.language}
-              rating={i.rating}
-              id={i.id}
-              summary={i.summary}
-            />
-          ))}
+          <MoviesShow
+            key={index}
+            name={i.name}
+            image={i.imageOriginal ? i.imageOriginal : i.image}
+            genres={i.genres}
+            visitSite={i.visitSite}
+            officialSite={i.officialSite}
+            language={i.language}
+            rating={i.rating}
+            id={i.id}
+            summary={i.summary}
+          />
+        ))}
       </div>
     </>
   );
 };
 
 export default GetDataMovie;
-

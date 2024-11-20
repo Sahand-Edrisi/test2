@@ -6,12 +6,9 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
- <StrictMode>
     <BrowserRouter future={{
     v7_startTransition: true,
   }}>
       <App />
     </BrowserRouter>
- </StrictMode>
-
 );
