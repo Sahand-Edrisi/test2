@@ -5,7 +5,7 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/"  Component={MoviesShow} />
+        <Route path="/test2/"  Component={MoviesShow} />
         <Route path="/:id"  Component={MoviesShow} />
       </Routes>
     </>
