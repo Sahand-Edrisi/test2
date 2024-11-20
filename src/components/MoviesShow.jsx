@@ -8,6 +8,16 @@ import Movie from "./movie";
 
 const MoviesShow = () => {
   const [Movies, setMovieData] = useState([]);
+
+  useEffect(() => {
+    return async () => {
+      const response = await axios.get(
+        "https://api.tvmaze.com/search/shows?q=dark"
+      );
+      setMovieData(response.data);
+      console.log("1");
+    };
+  }, []);
   const params = useParams();
   let data = Movies.map((f, index) => ({
     name: f.show.name,
@@ -31,17 +41,13 @@ const MoviesShow = () => {
     const response = await axios.get(`${finalUrl}`);
     setMovieData(response.data);
   }
-  useEffect(() => {
-    return async () => {
-      const response = await axios.get(
-        "https://api.tvmaze.com/search/shows?q=dark"
-      );
-      setMovieData(response.data);
-    };
-  }, []);
 
+  console.log("2");
+  console.log(Movies.length > 0);
+if(Movies.length > 0){
   return (
     <>
+      {console.log("3")}
       {/* search box */}
       <div className="search-box">
         <input id="search" type="text" />
@@ -57,7 +63,7 @@ const MoviesShow = () => {
         {params.id === undefined ? (
           data.map((i, index) => (
             <>
-              {main.current.setAttribute("id", "MoviesShow")}
+              {/* {main.current.setAttribute("id", "MoviesShow")} */}
               <div className="movies" id={index}>
                 <h1 id="names">{i.name}</h1>
                 <img src={i.image} alt="" />
@@ -78,7 +84,7 @@ const MoviesShow = () => {
                 </div>
                 <Link className="seeMovie" to={`/${index}`}>
                   <button>
-                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    <i className="fa fa-eye" aria-hidden="true"></i>
                   </button>
                 </Link>
               </div>
@@ -106,7 +112,8 @@ const MoviesShow = () => {
       </div>
     </>
   );
-  function summaryData(id) {    
+}
+  function summaryData(id) {
     if (data[id].summary !== undefined) {
       let removeTPFirst = data[id].summary.replace("<p>", "");
       let removeTPLast = removeTPFirst.replace("</p>", "");
