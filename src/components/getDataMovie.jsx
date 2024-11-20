@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MoviesShow from "./MoviesShow";
-import { Link } from "react-router-dom";
-// import Movie from "./movie";
-
+import { Link, useParams } from "react-router-dom";
+import Movie from "./movie";
 const GetDataMovie = () => {
   const [Movies, setMovieData] = useState([]);
   useEffect(() => {
@@ -15,6 +14,7 @@ const GetDataMovie = () => {
       setMovieData(response.data);
     }
   }, []);
+  let params = useParams();
   async function search() {
     let url = "https://api.tvmaze.com/search/shows?q=";
     let input = document.getElementById("search");
@@ -37,7 +37,6 @@ const GetDataMovie = () => {
     summary: f.show.summary ? f.show.summary : undefined,
     id: index,
   }));
-
   return (
     <>
       <div className="search-box">
@@ -48,22 +47,37 @@ const GetDataMovie = () => {
           </button>
         </Link>
       </div>
-      <div id="MoviesShow">
-        {data.map((i, index) => (
-          <MoviesShow
-            key={index}
-            name={i.name}
-            image={i.imageOriginal ? i.imageOriginal : i.image}
-            genres={i.genres}
-            visitSite={i.visitSite}
-            officialSite={i.officialSite}
-            language={i.language}
-            rating={i.rating}
-            id={i.id}
-            summary={i.summary}
+        {params.id === undefined ? (
+          <div id="MoviesShow">
+          {data.map((i, index) => (
+            <MoviesShow
+              key={index}
+              name={i.name}
+              image={i.imageOriginal ? i.imageOriginal : i.image}
+              genres={i.genres}
+              visitSite={i.visitSite}
+              officialSite={i.officialSite}
+              language={i.language}
+              rating={i.rating}
+              id={i.id}
+              summary={i.summary}
+            />
+          ))}
+          </div>
+        ) : (
+          <div id="MovieShow">
+          <Movie  
+            name={data[params.id].name}
+            image={data[params.id].imageOriginal ? data[params.id].imageOriginal : data[params.id].image}
+            genres={data[params.id].genres}
+            visitSite={data[params.id].visitSite}
+            officialSite={data[params.id].officialSite}
+            language={data[params.id].language}
+            rating={data[params.id].rating}
+            id={data[params.id].id}
           />
-        ))}
-      </div>
+          </div>
+        )}
     </>
   );
 };

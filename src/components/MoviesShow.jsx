@@ -1,11 +1,7 @@
 import "../style/style.css";
 import { Link } from "react-router-dom";
 import "../fontAwesome-free-6.2.1-web/css/all.min.css";
-// import Movie from "./movie";
-
 const MoviesShow = ({name,image,genres,visitSite,officialSite,language,rating,id,summary}) => {
-
- 
   return (
     <>
               <div className="movies" id={id}>
@@ -26,7 +22,7 @@ const MoviesShow = ({name,image,genres,visitSite,officialSite,language,rating,id
                     summary : <span>{summaryData()}...</span>
                   </p>
                 </div>
-                <Link className="seeMovie" to={`/${id}`}>
+                <Link className="seeMovie" to={`/test2/${id}`}>
                   <button>
                     <i className="fa fa-eye" aria-hidden="true"></i>
                   </button>
