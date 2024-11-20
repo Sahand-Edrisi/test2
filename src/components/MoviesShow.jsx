@@ -112,6 +112,8 @@ if(Movies.length > 0){
       </div>
     </>
   );
+}else{
+  <MoviesShow/>
 }
   function summaryData(id) {
     if (data[id].summary !== undefined) {
