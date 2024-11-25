@@ -7,7 +7,7 @@ const NotMovie = () => {
   console.log(btn);
   return (
     <>
-      <div className="vpn">
+      <div className="notMovie">
         <h1 className="text">
           Please search <span>Movie name</span> for visit website
         </h1>

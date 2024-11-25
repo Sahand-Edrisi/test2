@@ -47,7 +47,7 @@ const Movie = ({
       let removeTBlast = removeTBFirst.replace("</b>", "");
       let removeTIFirst = removeTBlast.replace("<i>", "");
       let removeTILast = removeTIFirst.replace("</i>", "");
-      let slice = removeTILast.slice(0, 180);
+      let slice = removeTILast.slice(0, 80);
       return slice;
     }
   }

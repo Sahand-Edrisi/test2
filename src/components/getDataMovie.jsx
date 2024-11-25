@@ -35,7 +35,7 @@ const GetDataMovie = () => {
       .catch((e) => {
         setTimeout(() => {
           setVpn(false);
-        }, 1000);
+        }, 2000);
         console.log(e.message);
       });
   }, []);
@@ -58,7 +58,7 @@ const GetDataMovie = () => {
       .catch((e) => {
         setTimeout(() => {
           setVpn(false);
-        }, 1000);
+        }, 2000);
         console.log(e.message);
       });
   }
