@@ -1,13 +1,12 @@
-import { Route, Routes} from "react-router-dom";
-import MoviesShow from "./components/MoviesShow";
+import { Route, Routes } from "react-router-dom";
 import getData from "./components/getDataMovie";
+
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/test2/" excite Component={getData} />
-        <Route path="/test2/"  Component={MoviesShow} />
-        <Route path="/test2/:id"  Component={getData} />
+        <Route path="/test2/" Component={getData} />
+        <Route path="/test2/:id" Component={getData} />
       </Routes>
     </>
   );
